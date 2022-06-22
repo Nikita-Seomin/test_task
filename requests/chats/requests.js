@@ -12,7 +12,11 @@ const requests = {
     "ADD_USER_TO_CHAT" :
         "REPLACE INTO `peopleInChat` (`personID`, `chatID`) VALUES (?, ?)",
 
-
+    //-----------------getController----------------------------------------------------------
+    "CHEAK_USER_IS_EXIST" :
+        "SELECT idUser FROM user WHERE idUser=? LIMIT 1",
+    "SEARCH_ALL_CHATS" :
+        "SELECT * FROM `chat` INNER JOIN `peopleInChat` ON chatID=idChat WHERE personID=? ORDER BY created_at"
 }
 
 module.exports = requests
