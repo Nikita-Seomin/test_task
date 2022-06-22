@@ -1,4 +1,8 @@
-
+const mysql = require("mysql2");
+const {dbConfig} = require("../../setting");
+const async = require("async");
+const requests = require("./requests");
+require('x-date') ;
 
 class addController {
     add(req, res) {
@@ -14,9 +18,9 @@ class addController {
             // insert user
             function (callback) {
                 let dateTimeNow = new Date().format('yyyy-mm-dd HH:MM:ss');            //receive data in format
-                let sql = requests.ADD_USER;       //insert request
+                let sql = requests.ADD_USER;       //insert request text
                 connection.query(sql,                                                       // connection for sql request
-                    [username, dateTimeNow],                                          // values are substituted in the request instead of ?
+                    [username, dateTimeNow],                                          // values are substituted in the request instead of ? (username.dateTimeNow)
                     (err) => {
                         if (err)                                                            //if err => return err to last function
                             return callback(err);
@@ -28,11 +32,11 @@ class addController {
             // select user id which insert
             function (callback) {
                 //search for the id of the added user from the end of the table
-                let sql = requests.SEARCH_ID_ADDED_USER;
-                connection.query(sql, [username],
+                let sql = requests.SEARCH_ID_ADDED_USER;                                        //search id added user req text
+                connection.query(sql, [username],                                         // values are substituted in the request instead of ? (username)
                     (err, results) => {
                     if (err)
-                        return callback(err);
+                        return callback(err);                                               //if err => return err to last function
                     callback(null, results[0]['idUser']);                                    //if everything is fine then end requests and send to last func adding idUser
                 });
             },

@@ -11,8 +11,11 @@
   "author": "nickita.seomin",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.2.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "nodemon": "^2.0.16"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.16",
+    "x-date": "^1.0.2"
   }
 }
